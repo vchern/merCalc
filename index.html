@@ -8,18 +8,35 @@
     </head>
     <body>
       <script type="text/javascript">
-function validateForm( form ){
-  alert('hello world' + form.mer.value);
-}
-  </script>
-    <form onsubmit="return validateForm(this);">
+    function validateForm(form){
+      var initialDeposit = form.initialdeposit.value;
+      var mer = form.mer.value;
+      
+      
+       if (!initialDeposit || isNaN(initialDeposit)){
+        alert("Please enter a valid number for Initial Deposit");
+        return;
+      }
+      
+      
+      if (!mer || isNaN(mer)){
+        alert("Please enter a valid number for MER");
+        return;
+      }
+      
+      calculate(initialDeposit, mer);
+      
+      return false;
+    }
+     </script>
+    <form name="form123">
       Initial Deposit: <br>
       <input type = "text" name = "initialdeposit">
       <br>
       Management Expense Ratio (MER):<br>
       <input type = "text" name = "mer">
       <br>
-      <input type="submit" value="Submit">
+      <input type="button" onclick="validateForm(this.form); return false" value="Submit">
       <input type="reset" value="Clear Form"><br>
     </form>
     <p id="results"></p>
