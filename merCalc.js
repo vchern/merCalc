@@ -9,20 +9,17 @@ function calculate(initial, merForm) {
     var merTotal = 0;
     var amountObj = [];
     var merObj = [];
+    var merToday;
 
 
     // Calculates the final amount of MER and investment by calculating amount per day
     for (var i = 1; i < period * 365; i++) {
-        finalAmount = finalAmount + (finalAmount * dailyReturnRate);
+        merToday = finalAmount * dailyMER;
+        finalAmount = finalAmount + (finalAmount * dailyReturnRate) - merToday;
         //console.log(finalAmount);
         amountObj.push({
             x: i,
             y: finalAmount
-        });
-        merTotal = merTotal + (finalAmount * dailyMER);
-        merObj.push({
-            x: i,
-            y: merTotal
         });
     }
     // Round shit cuz float
